@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "Michael Clayton",
+      "authorEmail": "mwc@clayto.com",
+      "authorUrl": "http://scripta.co"
+    }
+  }
+}
