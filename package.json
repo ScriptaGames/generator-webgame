@@ -3,15 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "homepage": "https://github.com/ScriptaGames/generator-webgame",
-  "author": "",
-  "files": [
-    "generators"
-  ],
   "author": {
     "name": "Michael Clayton",
     "email": "mwc@clayto.com",
     "url": "https://clayto.com"
   },
+  "files": [
+    "generators"
+  ],
   "main": "index.js",
   "keywords": [
     "yeoman-generator"
@@ -37,7 +36,7 @@
     "test": "echo \"Error: no test specified\" && exit 1 && jest",
     "pretest": "eslint ."
   },
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "yeoman-generator": "^2.0.1",
     "chalk": "^2.1.0",
