@@ -78,4 +78,15 @@ module.exports = class extends Generator {
       yarn: false
     });
   }
+
+  end() {
+    this.log(`Your webgame is ready!
+
+To start up the development server:
+
+  cd ${this.answers.dirName}
+  npm start
+
+Have fun, and if you have any issues, ask them here: https://github.com/ScriptaGames/create-webgame/issues`);
+  }
 };
