@@ -1,33 +1,21 @@
-# generator-webgame [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+# generator-webgame [![NPM version][npm-image]][npm-url]
+
 > Generate a web game project.
 
-## Installation
+This is the Yeoman generator used by [create-webgame][create-webgame] to scaffold out a new web game project.  The easiest way to use it is with `npm init`, like so:
 
-First, install [Yeoman](http://yeoman.io) and generator-webgame using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
-
-```bash
-npm install -g yo
-npm install -g generator-webgame
+```
+npm init webgame
 ```
 
-Then generate your new project:
+Instead, if you wish to invoke it from yeoman directly, the following also works:
 
-```bash
+```
+npm install -g generator-webgame
 yo webgame
 ```
 
-## Getting To Know Yeoman
-
- * Yeoman has a heart of gold.
- * Yeoman is a person with feelings and opinions, but is very easy to work with.
- * Yeoman can be too opinionated at times but is easily convinced not to be.
- * Feel free to [learn more about Yeoman](http://yeoman.io/).
-
-## License
-
-ISC © [Michael Clayton](http://scripta.co)
-
-
+[create-webgame]: https://github.com/ScriptaGames/create-webgame
 [npm-image]: https://badge.fury.io/js/generator-webgame.svg
 [npm-url]: https://npmjs.org/package/generator-webgame
 [travis-image]: https://travis-ci.org/ScriptaGames/generator-webgame.svg?branch=master

@@ -1,38 +1,81 @@
-'use strict';
-const Generator = require('yeoman-generator');
-const chalk = require('chalk');
-const yosay = require('yosay');
+"use strict";
+const Generator = require("yeoman-generator");
+const yosay = require("yosay");
+const slug = require("slug");
+const mkdirp = require("mkdirp");
 
 module.exports = class extends Generator {
-  prompting() {
-    // Have Yeoman greet the user.
-    this.log(
-      yosay(`Welcome to the lovely ${chalk.red('generator-webgame')} generator!`)
-    );
+  async prompting() {
+    this.log(yosay(`Would you like to generate a game?`));
 
-    const prompts = [
+    this.answers = await this.prompt([
       {
-        type: 'confirm',
-        name: 'someAnswer',
-        message: 'Would you like to enable this option?',
-        default: true
-      }
-    ];
+        type: "input",
+        name: "gameName",
+        message: "The name of your game:",
+        validate: answer => (/.+/.test(answer) ? true : "Name can't be empty.")
+      },
 
-    return this.prompt(prompts).then(props => {
-      // To access props later use this.props.someAnswer;
-      this.props = props;
-    });
+      // {
+      //   type: "input",
+      //   name: "shortName",
+      //   message: "Your game's shortname ",
+      //   default: answers => slug(answers.fullName, { lower: true }),
+      // },
+
+      {
+        type: "list",
+        name: "lib",
+        message: "Game engine",
+        choices: [
+          {
+            name: "Phaser 3",
+            value: "phaser"
+          },
+          {
+            name: "Phaser 2 (CE)",
+            value: "phaser-ce"
+          },
+          {
+            name: "three.js",
+            value: "three"
+          },
+          {
+            name: "p5.js",
+            value: "p5"
+          },
+          {
+            name: "none (plain JS)",
+            value: "none"
+          }
+        ]
+      }
+    ]);
   }
 
-  writing() {
-    this.fs.copy(
-      this.templatePath('dummyfile.txt'),
-      this.destinationPath('dummyfile.txt')
+  async writing() {
+    // Sneak the directory name into the answers object, shhhh...
+    this.answers.dirName = slug(this.answers.gameName, { lower: true });
+
+    await mkdirp(this.answers.dirName);
+
+    this.fs.copyTpl(
+      this.templatePath("**/*"),
+      this.destinationPath(this.answers.dirName),
+      this.answers,
+      {
+        globOption: { dot: true }
+      }
     );
   }
 
   install() {
-    this.installDependencies();
+    process.chdir(this.answers.dirName);
+
+    this.installDependencies({
+      npm: true,
+      bower: false,
+      yarn: false
+    });
   }
 };

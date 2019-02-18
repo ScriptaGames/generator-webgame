@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'MyFont';
+    src: url('./mago3.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    background: black;
+    font: "MyFont";
+    color: white;
+}
+
+.hello {
+    color: red;
+}
