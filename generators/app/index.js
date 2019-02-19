@@ -3,10 +3,11 @@ const Generator = require("yeoman-generator");
 const yosay = require("yosay");
 const slug = require("slug");
 const mkdirp = require("mkdirp");
+const path = require("path");
 
 module.exports = class extends Generator {
   async prompting() {
-    this.log(yosay(`Would you like to generate a game?`));
+    this.log(yosay(`Would you like to make a game?`));
 
     this.answers = await this.prompt([
       {
@@ -59,6 +60,7 @@ module.exports = class extends Generator {
 
     await mkdirp(this.answers.dirName);
 
+    // copy all files, with templating
     this.fs.copyTpl(
       this.templatePath("**/*"),
       this.destinationPath(this.answers.dirName),
@@ -66,6 +68,13 @@ module.exports = class extends Generator {
       {
         globOption: { dot: true }
       }
+    );
+
+    // copy the lib-specific game.js into position
+    this.fs.copyTpl(
+      this.templatePath(path.join("src", `game-${this.answers.lib}.js`)),
+      this.destinationPath(path.join(this.answers.dirName, "src", "game.js")),
+      this.answers
     );
   }
 

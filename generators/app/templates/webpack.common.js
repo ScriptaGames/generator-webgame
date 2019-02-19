@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
+
 module.exports = {
     entry: {
         app: './src/index.js',
@@ -20,7 +21,7 @@ module.exports = {
                     options: {
                         cacheDirectory: true,
                         presets: ['@babel/preset-env'],
-                        plugins: ['@babel/plugin-transform-runtime']
+                        plugins: ['@babel/plugin-transform-runtime', "@babel/plugin-syntax-dynamic-import"]
                     }
                 }
             },

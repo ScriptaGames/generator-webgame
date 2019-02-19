@@ -1,16 +1,17 @@
-@font-face {
-    font-family: 'MyFont';
-    src: url('./mago3.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
 }
 
 body {
-    background: black;
-    font: "MyFont";
-    color: white;
-}
+  background: black;
+  color: white;
 
-.hello {
-    color: red;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
 }
