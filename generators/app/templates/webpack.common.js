@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-
+const PrettierPlugin = require("prettier-webpack-plugin");
 
 module.exports = {
     entry: {
@@ -13,6 +13,15 @@ module.exports = {
     },
     module: {
         rules: [
+            {
+                enforce: "pre",
+                test: /\.js$/,
+                loader: "eslint-loader",
+                options: {
+                    cache: true,
+                    fix: true
+                },
+            },
             {
                 test: /\.m?js$/,
                 exclude: /node_modules/,
@@ -48,6 +57,9 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin(['dist']),
+        new PrettierPlugin({
+            configFile: "prettier.config.js"
+        }),
         new HtmlWebpackPlugin({
             title: 'Output Management'
         }),
