@@ -36,10 +36,12 @@
   },
   "license": "MIT",
   "dependencies": {
-    "yeoman-generator": "^2.0.1",
     "chalk": "^2.1.0",
+    "fs-extra": "^7.0.1",
+    "globby": "^9.0.0",
     "mkdirp": "^0.5.1",
     "slug": "^0.9.3",
+    "yeoman-generator": "^2.0.1",
     "yosay": "^2.0.1"
   },
   "jest": {
