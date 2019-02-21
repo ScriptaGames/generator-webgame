@@ -47,7 +47,7 @@ module.exports = class extends Generator {
           },
           {
             name: "none (plain JS)",
-            value: "none"
+            value: "plain"
           }
         ]
       }
