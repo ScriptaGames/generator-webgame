@@ -17,13 +17,6 @@ module.exports = class extends Generator {
         validate: answer => (/.+/.test(answer) ? true : "Name can't be empty.")
       },
 
-      // {
-      //   type: "input",
-      //   name: "shortName",
-      //   message: "Your game's shortname ",
-      //   default: answers => slug(answers.fullName, { lower: true }),
-      // },
-
       {
         type: "list",
         name: "lib",
