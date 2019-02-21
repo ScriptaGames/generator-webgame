@@ -64,6 +64,13 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath("**/*"),
       this.destinationPath(this.answers.dirName),
+      this.answers
+    );
+
+    // copy dotfiles
+    this.fs.copyTpl(
+      this.templatePath("**/.*"),
+      this.destinationPath(this.answers.dirName),
       this.answers,
       {
         globOption: { dot: true }
