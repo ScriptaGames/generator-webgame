@@ -76,6 +76,17 @@ module.exports = class extends Generator {
       this.destinationPath(path.join(this.answers.dirName, "src", "game.js")),
       this.answers
     );
+
+    // copy any lib-specific assets into position
+    this.fs.copyTpl(
+      this.templatePath(path.join("src", `assets-${this.answers.lib}`)),
+      this.destinationPath(path.join(this.answers.dirName, "src", "assets")),
+      this.answers
+    );
+
+    // remove the lib-specific versions of files
+    this.fs.delete(path.join(this.answers.dirName, "src", "game-*.js"));
+    this.fs.delete(path.join(this.answers.dirName, "src", "assets-*", "**"), { deep: true });
   }
 
   install() {
