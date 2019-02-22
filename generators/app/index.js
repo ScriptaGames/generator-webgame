@@ -54,16 +54,12 @@ module.exports = class extends Generator {
 
         await mkdirp(this.answers.slugName);
 
-        this.log("copy files");
-
         // Copy all files, with templating
         this.fs.copyTpl(
             this.templatePath("**/*"),
             this.destinationPath(this.answers.slugName),
             this.answers
         );
-
-        this.log("copy dotfiles");
 
         // Copy dotfiles
         this.fs.copyTpl(
@@ -74,7 +70,6 @@ module.exports = class extends Generator {
                 globOption: { dot: true }
             }
         );
-        this.log("copy game.js");
 
         // Copy the lib-specific game.js into position
         this.fs.copyTpl(
@@ -84,7 +79,6 @@ module.exports = class extends Generator {
             ),
             this.answers
         );
-        this.log("copy assets");
 
         // Copy any lib-specific assets into position
         this.fs.copy(
