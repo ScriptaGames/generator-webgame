@@ -61,12 +61,16 @@ module.exports = {
             configFile: "prettier.config.js"
         }),
         new HtmlWebpackPlugin({
-            title: 'Output Management'
+            title: `<%= gameName.replace('\`', '') %>`
         }),
     ],
     optimization: {
         splitChunks: {
             chunks: "all"
         }
-    }
+    },
+    performance: {
+        maxEntrypointSize: 5000000, // bytes
+        maxAssetSize: 5000000, // bytes
+    },
 };

@@ -50,61 +50,62 @@ module.exports = class extends Generator {
 
     async writing() {
         // Sneak the directory name into the answers object, shhhh...
-        this.answers.dirName = slug(this.answers.gameName, { lower: true });
+        this.answers.slugName = slug(this.answers.gameName, { lower: true });
 
-        await mkdirp(this.answers.dirName);
+        await mkdirp(this.answers.slugName);
+
+        this.log("copy files");
 
         // Copy all files, with templating
         this.fs.copyTpl(
             this.templatePath("**/*"),
-            this.destinationPath(this.answers.dirName),
+            this.destinationPath(this.answers.slugName),
             this.answers
         );
+
+        this.log("copy dotfiles");
 
         // Copy dotfiles
         this.fs.copyTpl(
             this.templatePath("**/.*"),
-            this.destinationPath(this.answers.dirName),
+            this.destinationPath(this.answers.slugName),
             this.answers,
             {
                 globOption: { dot: true }
             }
         );
+        this.log("copy game.js");
 
         // Copy the lib-specific game.js into position
         this.fs.copyTpl(
             this.templatePath(path.join("src", `game-${this.answers.lib}.js`)),
             this.destinationPath(
-                path.join(this.answers.dirName, "src", "game.js")
+                path.join(this.answers.slugName, "src", "game.js")
             ),
             this.answers
         );
+        this.log("copy assets");
 
         // Copy any lib-specific assets into position
-        this.fs.copyTpl(
+        this.fs.copy(
             this.templatePath(path.join("src", `assets-${this.answers.lib}`)),
             this.destinationPath(
-                path.join(this.answers.dirName, "src", "assets")
-            ),
-            this.answers
+                path.join(this.answers.slugName, "src", "assets")
+            )
         );
 
         // Remove the lib-specific versions of files
-        this.fs.delete(path.join(this.answers.dirName, "src", "game-*.js"));
+        this.fs.delete(path.join(this.answers.slugName, "src", "game-*.js"));
         this.fs.delete(
-            path.join(this.answers.dirName, "src", "assets-*", "**"),
+            path.join(this.answers.slugName, "src", "assets-*", "**"),
             { deep: true }
         );
     }
 
     async install() {
-        process.chdir(this.answers.dirName);
+        process.chdir(this.answers.slugName);
 
-        // run eslint
-        this.log("eslinting");
-        this.log("eslinting done");
-
-        // install deps
+        // Install deps
         this.installDependencies({
             npm: true,
             bower: false,
@@ -117,7 +118,7 @@ module.exports = class extends Generator {
 
 To start up the development server:
 
-  cd ${this.answers.dirName}
+  cd ${this.answers.slugName}
   npm start
 
 Have fun, and if you have any issues, ask them here: https://github.com/ScriptaGames/create-webgame/issues`);
