@@ -11,5 +11,6 @@ module.exports = {
     description: "DESCRIPTION OF THE GAME",
     thumbUrl: "URL TO A THUMBNAIL OF THE GAME",
     keywords: "fun,games,yes,play,webgame",
+    package: require("../package.json"),
 };
 

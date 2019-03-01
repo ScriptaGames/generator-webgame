@@ -1,18 +1,20 @@
 import * as THREE from "three";
 import Stats from "three/examples/js/libs/stats.min";
 
-// three.js's official examples expect THREE to be available as a global, so
-// let 'em have it. import any official three.js examples here.
-window.THREE = THREE;
-require("three/examples/js/controls/DragControls"); // THREE.DragControls is now available
-require("three/examples/js/controls/TrackballControls"); // THREE.TrackbacllControls is now available
-
 let container, stats;
 let camera, controls, scene, renderer;
 let objects = [];
 
-init();
-animate();
+function start() {
+    // three.js's official examples expect THREE to be available as a global, so
+    // let 'em have it. import any official three.js examples here.
+    window.THREE = THREE;
+    require("three/examples/js/controls/DragControls"); // THREE.DragControls is now available
+    require("three/examples/js/controls/TrackballControls"); // THREE.TrackbacllControls is now available
+
+    init();
+    animate();
+}
 
 function init() {
 
@@ -140,3 +142,5 @@ function render() {
   renderer.render( scene, camera );
 
 }
+
+export default { start };

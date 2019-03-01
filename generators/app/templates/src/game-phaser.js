@@ -140,4 +140,8 @@ let config = {
     }
 };
 
-let game = new Phaser.Game(config);
+function start() {
+    let game = new Phaser.Game(config);
+}
+
+export default { start };
