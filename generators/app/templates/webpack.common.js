@@ -62,6 +62,8 @@ module.exports = {
             configFile: "prettier.config.js"
         }),
         new HtmlWebpackPlugin({
+            template: 'src/index.ejs',
+            templateParameters: require("./src/metadata.js"),
             title: `<%= gameName.replace('\`', '') %>`
         }),
     ],
