@@ -96,10 +96,9 @@ module.exports = class extends Generator {
         );
     }
 
-    async install() {
-        process.chdir(this.answers.slugName);
-
+    install() {
         // Install deps
+        process.chdir(this.answers.slugName);
         this.installDependencies({
             npm: true,
             bower: false,
@@ -108,6 +107,15 @@ module.exports = class extends Generator {
     }
 
     end() {
+        // Initialize git
+        this.spawnCommandSync("git", ["init"]);
+        this.spawnCommandSync("git", ["add", "--all"]);
+        this.spawnCommandSync("git", [
+            "commit",
+            "-m",
+            "initial commit from 'yo webgame'"
+        ]);
+
         this.log(`Your webgame is ready!
 
 To start up the development server:
