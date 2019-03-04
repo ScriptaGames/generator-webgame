@@ -21,6 +21,9 @@
     <% } %>
     <% if (lib == 'phaser-ce') { %>
     "phaser-ce": "^2.12.0",
+    <% if (phaserCeTiled) { %>
+    "phaser-tiled": "^2.0.4",
+    <% } %>
     <% } %>
     <% if (lib == 'p5') { %>
     "p5": "^0.7.3",

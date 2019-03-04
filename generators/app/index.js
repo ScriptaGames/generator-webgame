@@ -44,6 +44,13 @@ module.exports = class extends Generator {
                         value: "plain"
                     }
                 ]
+            },
+
+            {
+                type: "confirm",
+                name: "phaserCeTiled",
+                message: "Include Tiled map support?",
+                when: answers => answers.lib === "phaser-ce"
             }
         ]);
     }
