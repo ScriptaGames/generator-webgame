@@ -6,8 +6,11 @@ module.exports = merge(common, {
     mode: 'development',
     devtool: 'inline-source-map',
     devServer: {
-        contentBase: 'dist',
+        contentBase: "dist",
+        compress: true,
+        open: true,
         hot: true,
+        overlay: true,
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
